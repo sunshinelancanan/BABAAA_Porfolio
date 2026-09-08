@@ -213,9 +213,124 @@
   }
 
   audio{ display:none; }
+
+  /* ---- verification gate ---- */
+  #page-content{
+    transition: filter 1s ease;
+  }
+  #page-content.locked{
+    filter: blur(26px) brightness(0.6);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  #gate{
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(10,6,5,0.55);
+    transition: opacity 0.9s ease;
+  }
+  #gate.hidden{
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .gate-card{
+    text-align: center;
+    max-width: 360px;
+    width: 100%;
+  }
+  .gate-title{
+    font-family: 'Alex Brush', cursive;
+    font-size: clamp(2.6rem, 9vw, 3.6rem);
+    color: var(--gold-bright);
+    margin: 0 0 0.3rem;
+    text-shadow: 0 0 30px rgba(201,166,107,0.3);
+  }
+  .gate-sub{
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--dim);
+    font-size: 1rem;
+    margin: 0 0 1.8rem;
+    line-height: 1.6;
+  }
+  .gate-input{
+    width: 100%;
+    background: rgba(36,5,9,0.5);
+    border: 1px solid rgba(201,166,107,0.45);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 0.08em;
+    padding: 0.8rem 1rem;
+    outline: none;
+  }
+  .gate-input::placeholder{ color: rgba(242,230,222,0.3); }
+  .gate-input:focus{ border-color: var(--gold-bright); box-shadow: 0 0 20px rgba(201,166,107,0.25); }
+
+  .gate-btn{
+    margin-top: 1rem;
+    width: 100%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-bright);
+    background: transparent;
+    border: 1px solid rgba(201,166,107,0.55);
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  .gate-btn:hover, .gate-btn:focus-visible{
+    background: rgba(201,166,107,0.1);
+    box-shadow: 0 0 26px rgba(201,166,107,0.25);
+    outline: none;
+  }
+
+  .gate-error{
+    margin-top: 0.9rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #E29A9A;
+    min-height: 1.2em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gate-error.visible{ opacity: 1; }
+
+  .gate-card.shake{ animation: shake 0.4s; }
+  @keyframes shake{
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .gate-card.shake{ animation: none; }
+    #page-content{ transition: none; }
+    #gate{ transition: none; }
+  }
 </style>
 </head>
 <body>
+
+<div id="gate">
+  <div class="gate-card" id="gateCard">
+    <p class="gate-title">A little verification &#10084;</p>
+    <p class="gate-sub">before you come in... prove it's you.<br>our initials + our date</p>
+    <input type="password" id="gateInput" class="gate-input" placeholder="enter the passcode" autocomplete="off">
+    <button id="gateBtn" class="gate-btn">Unlock</button>
+    <p class="gate-error" id="gateError">that's not quite it, try again</p>
+  </div>
+</div>
+
+<div id="page-content" class="locked">
 
 <div id="embers"></div>
 
@@ -248,6 +363,8 @@
 </main>
 
 <audio id="bgMusic" src="song.mp3" preload="auto" loop></audio>
+
+</div>
 
 <script>
   // ---- ambient embers ----
@@ -361,8 +478,38 @@
     });
   }
 
-  window.addEventListener('DOMContentLoaded', beginPlayback);
-  document.addEventListener('click', beginPlayback, { once: true });
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('gateInput').focus();
+  });
+
+  // Not shown to the person — checked against what they type.
+  const PASSCODE = 'pl0912250';
+
+  const gate = document.getElementById('gate');
+  const gateCard = document.getElementById('gateCard');
+  const gateInput = document.getElementById('gateInput');
+  const gateBtn = document.getElementById('gateBtn');
+  const gateError = document.getElementById('gateError');
+  const pageContent = document.getElementById('page-content');
+
+  function tryUnlock() {
+    const value = gateInput.value.trim().toLowerCase();
+    if (value === PASSCODE) {
+      gate.classList.add('hidden');
+      pageContent.classList.remove('locked');
+      beginPlayback();
+    } else {
+      gateError.classList.add('visible');
+      gateCard.classList.remove('shake');
+      void gateCard.offsetWidth;
+      gateCard.classList.add('shake');
+    }
+  }
+
+  gateBtn.addEventListener('click', tryUnlock);
+  gateInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') tryUnlock();
+  });
 
   audio.addEventListener('ended', () => {
     nowPlaying.classList.remove('visible');
