@@ -312,6 +312,14 @@
     [242, "Cause you are the one, you are the one"]
   ];
 
+  // Indices in the `lyrics` array above that are chorus lines
+  // ("you are the one..."). Volume rises for these, then settles
+  // back down for verses/bridge.
+  const chorusIndices = new Set([7,8,9,10,11,12, 21,22,23,24,25, 30,31,32,33]);
+
+  const BASE_VOLUME = 0.55;
+  const CHORUS_VOLUME = 0.95;
+
   const lyricBg = document.getElementById('lyricBg');
   let currentSpan = null;
   let activeIndex = -1;
@@ -324,12 +332,29 @@
     return idx;
   }
 
+  // Smoothly ramps audio.volume toward a target over ~1.2s.
+  let fadeHandle = null;
+  function fadeVolumeTo(target, ms = 1200) {
+    if (fadeHandle) cancelAnimationFrame(fadeHandle);
+    const start = audio.volume;
+    const startTime = performance.now();
+    function step(now) {
+      const p = Math.min(1, (now - startTime) / ms);
+      audio.volume = start + (target - start) * p;
+      if (p < 1) {
+        fadeHandle = requestAnimationFrame(step);
+      }
+    }
+    fadeHandle = requestAnimationFrame(step);
+  }
+
   function showLine(idx) {
     if (idx === activeIndex) return;
     activeIndex = idx;
     if (currentSpan) {
       currentSpan.classList.remove('showing');
     }
+    fadeVolumeTo(idx >= 0 && chorusIndices.has(idx) ? CHORUS_VOLUME : BASE_VOLUME);
     if (idx < 0) return;
     const span = document.createElement('span');
     span.textContent = lyrics[idx][1];
@@ -352,13 +377,14 @@
 
   function beginPlayback() {
     if (started) return;
-    video.muted = false;
-    audio.volume = 0.35;
+    // Video stays muted permanently — only the background song plays.
+    video.muted = true;
+    audio.volume = BASE_VOLUME;
     Promise.all([video.play(), audio.play()]).then(() => {
       started = true;
       nowPlaying.classList.add('visible');
     }).catch(() => {
-      // Browser blocked autoplay with sound until a real user gesture —
+      // Browser blocked autoplay until a real user gesture —
       // the first tap/click anywhere on the page will start it.
     });
   }
