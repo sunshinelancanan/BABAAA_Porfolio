@@ -95,22 +95,33 @@
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(1.4rem, 4.2vw, 1.9rem);
-    color: var(--dim);
-    letter-spacing: 0.02em;
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+    color: var(--gold);
+    letter-spacing: 0.03em;
     margin: 0;
+    text-shadow: 0 0 24px rgba(201,166,107,0.2);
   }
 
   .hero-name{
     font-family: 'Alex Brush', cursive;
-    font-size: clamp(4rem, 15vw, 7.5rem);
+    font-size: clamp(4.5rem, 17vw, 9rem);
     line-height: 1.05;
-    margin: 0.2rem 0 0;
+    margin: 0.3rem 0 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15em;
     background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, var(--maroon-accent) 130%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 34px rgba(201,166,107,0.25);
+    text-shadow: 0 0 44px rgba(201,166,107,0.32);
+  }
+
+  .heart-icon{
+    width: 0.72em;
+    height: 0.72em;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 14px rgba(201,166,107,0.55));
   }
 
   /* ---- film frame, big ---- */
@@ -175,9 +186,9 @@
   }
   .lyric-line{
     text-align: center;
-    font-size: 1.35rem;
+    font-size: 1.9rem;
     font-style: italic;
-    line-height: 2.4;
+    line-height: 2.3;
     color: rgba(242,230,222,0.28);
     transition: color 0.6s ease, transform 0.6s ease, text-shadow 0.6s ease;
     padding: 0 1rem;
@@ -200,16 +211,17 @@
   .closing-note{
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: clamp(1.4rem, 3.6vw, 1.8rem);
+    font-size: clamp(1.7rem, 4.2vw, 2.3rem);
     color: var(--gold-bright);
-    margin: 0 0 0.9rem;
+    margin: 0 0 1rem;
+    text-shadow: 0 0 26px rgba(201,166,107,0.25);
   }
   .closing-sub{
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: var(--dim);
     max-width: 38ch;
     margin: 0 auto;
-    line-height: 1.7;
+    line-height: 1.8;
   }
 
   audio{ display:none; }
@@ -339,7 +351,16 @@
   <div class="center-col">
     <header class="hero">
       <p class="hero-line">Happy 1<sup>st</sup> Anniversary</p>
-      <h1 class="hero-name">Babaa &#10084;</h1>
+      <h1 class="hero-name">Babaa <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="heartGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E8CC8F"/>
+            <stop offset="60%" stop-color="#C9A66B"/>
+            <stop offset="130%" stop-color="#7A1B2E"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#heartGrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg></h1>
     </header>
   </div>
 
@@ -356,7 +377,7 @@
   <div class="center-col">
     <footer class="closing">
       <p class="closing-note">Happy Anniversary to my LOML,</p>
-      <p class="closing-sub">One year, countless firsts, and a lifetime of memories still ahead for us.</p>
+      <p class="closing-sub">Our first chapter of forever.<br>I love youuuuuu so so muchhhhh BABAA.</p>
     </footer>
   </div>
 
@@ -483,7 +504,7 @@
   });
 
   // Not shown to the person — checked against what they type.
-  const PASSCODE = 'pl091225';
+  const PASSCODE = 'PL091225';
 
   const gate = document.getElementById('gate');
   const gateCard = document.getElementById('gateCard');
@@ -493,7 +514,7 @@
   const pageContent = document.getElementById('page-content');
 
   function tryUnlock() {
-    const value = gateInput.value.trim().toLowerCase();
+    const value = gateInput.value.trim();
     if (value === PASSCODE) {
       gate.classList.add('hidden');
       pageContent.classList.remove('locked');
