@@ -323,7 +323,7 @@
 <div id="gate">
   <div class="gate-card" id="gateCard">
     <p class="gate-title">A little verification &#10084;</p>
-    <p class="gate-sub">before you come in... prove it's you.<br>our initials + our date</p>
+    <p class="gate-sub">before you come in... prove it's you.<br>Enter: PL + our date</p>
     <input type="password" id="gateInput" class="gate-input" placeholder="enter the passcode" autocomplete="off">
     <button id="gateBtn" class="gate-btn">Unlock</button>
     <p class="gate-error" id="gateError">that's not quite it, try again</p>
@@ -483,7 +483,7 @@
   });
 
   // Not shown to the person — checked against what they type.
-  const PASSCODE = 'pl091225';
+  const PASSCODE = 'PL091225';
 
   const gate = document.getElementById('gate');
   const gateCard = document.getElementById('gateCard');
