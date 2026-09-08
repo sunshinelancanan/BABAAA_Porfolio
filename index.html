@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,500;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --black: #0A0605;
-    --maroon-deep: #240509;
-    --maroon-mid: #4A0F1C;
-    --maroon-accent: #7A1B2E;
-    --gold: #C9A66B;
-    --gold-bright: #E8CC8F;
-    --cream: #F2E6DE;
-    --dim: rgba(242,230,222,0.38);
+    --black: #050A16;
+    --maroon-deep: #0B2340;
+    --maroon-mid: #123A66;
+    --maroon-accent: #2E6FA8;
+    --gold: #6FB6E8;
+    --gold-bright: #C3E6FF;
+    --cream: #EAF4FF;
+    --dim: rgba(234,244,255,0.42);
   }
 
   *{ box-sizing: border-box; }
@@ -52,7 +52,7 @@
     border-radius: 50%;
     background: var(--gold);
     opacity: 0;
-    box-shadow: 0 0 6px 1px rgba(201,166,107,0.8);
+    box-shadow: 0 0 6px 1px rgba(111,182,232,0.8);
     animation: rise linear infinite;
   }
   @keyframes rise{
@@ -99,7 +99,7 @@
     color: var(--gold);
     letter-spacing: 0.03em;
     margin: 0;
-    text-shadow: 0 0 24px rgba(201,166,107,0.2);
+    text-shadow: 0 0 24px rgba(111,182,232,0.2);
   }
 
   .hero-name{
@@ -114,14 +114,14 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 44px rgba(201,166,107,0.32);
+    text-shadow: 0 0 44px rgba(111,182,232,0.32);
   }
 
   .heart-icon{
     width: 0.72em;
     height: 0.72em;
     flex-shrink: 0;
-    filter: drop-shadow(0 0 14px rgba(201,166,107,0.55));
+    filter: drop-shadow(0 0 14px rgba(111,182,232,0.55));
   }
 
   /* ---- film frame, big ---- */
@@ -133,11 +133,11 @@
     position: relative;
     aspect-ratio: 16 / 9;
     width: 100%;
-    border: 1px solid rgba(201,166,107,0.55);
+    border: 1px solid rgba(111,182,232,0.55);
     box-shadow:
       0 0 0 6px rgba(10,6,5,0.6),
-      0 0 80px rgba(122,27,46,0.5),
-      0 0 160px rgba(122,27,46,0.22);
+      0 0 80px rgba(46,111,168,0.5),
+      0 0 160px rgba(46,111,168,0.22);
     overflow: hidden;
     background: #000;
   }
@@ -197,7 +197,7 @@
     color: var(--gold-bright);
     font-weight: 500;
     transform: scale(1.08);
-    text-shadow: 0 0 22px rgba(201,166,107,0.45);
+    text-shadow: 0 0 22px rgba(111,182,232,0.45);
   }
   .lyric-line.passed{ color: rgba(242,230,222,0.16); }
 
@@ -206,7 +206,7 @@
     text-align: center;
     margin-top: 3rem;
     padding-top: 2.6rem;
-    border-top: 1px solid rgba(201,166,107,0.2);
+    border-top: 1px solid rgba(111,182,232,0.2);
   }
   .closing-note{
     font-family: 'Playfair Display', serif;
@@ -214,7 +214,7 @@
     font-size: clamp(1.7rem, 4.2vw, 2.3rem);
     color: var(--gold-bright);
     margin: 0 0 1rem;
-    text-shadow: 0 0 26px rgba(201,166,107,0.25);
+    text-shadow: 0 0 26px rgba(111,182,232,0.25);
   }
   .closing-sub{
     font-size: 1.25rem;
@@ -262,7 +262,7 @@
     font-size: clamp(2.6rem, 9vw, 3.6rem);
     color: var(--gold-bright);
     margin: 0 0 0.3rem;
-    text-shadow: 0 0 30px rgba(201,166,107,0.3);
+    text-shadow: 0 0 30px rgba(111,182,232,0.3);
   }
   .gate-sub{
     font-family: 'Playfair Display', serif;
@@ -275,7 +275,7 @@
   .gate-input{
     width: 100%;
     background: rgba(36,5,9,0.5);
-    border: 1px solid rgba(201,166,107,0.45);
+    border: 1px solid rgba(111,182,232,0.45);
     color: var(--cream);
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.2rem;
@@ -285,7 +285,7 @@
     outline: none;
   }
   .gate-input::placeholder{ color: rgba(242,230,222,0.3); }
-  .gate-input:focus{ border-color: var(--gold-bright); box-shadow: 0 0 20px rgba(201,166,107,0.25); }
+  .gate-input:focus{ border-color: var(--gold-bright); box-shadow: 0 0 20px rgba(111,182,232,0.25); }
 
   .gate-btn{
     margin-top: 1rem;
@@ -295,14 +295,14 @@
     letter-spacing: 0.06em;
     color: var(--gold-bright);
     background: transparent;
-    border: 1px solid rgba(201,166,107,0.55);
+    border: 1px solid rgba(111,182,232,0.55);
     padding: 0.7rem 2rem;
     cursor: pointer;
     transition: background 0.4s ease, box-shadow 0.4s ease;
   }
   .gate-btn:hover, .gate-btn:focus-visible{
-    background: rgba(201,166,107,0.1);
-    box-shadow: 0 0 26px rgba(201,166,107,0.25);
+    background: rgba(111,182,232,0.1);
+    box-shadow: 0 0 26px rgba(111,182,232,0.25);
     outline: none;
   }
 
@@ -354,9 +354,9 @@
       <h1 class="hero-name">Babaa <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="heartGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#E8CC8F"/>
-            <stop offset="60%" stop-color="#C9A66B"/>
-            <stop offset="130%" stop-color="#7A1B2E"/>
+            <stop offset="0%" stop-color="#C3E6FF"/>
+            <stop offset="60%" stop-color="#6FB6E8"/>
+            <stop offset="130%" stop-color="#2E6FA8"/>
           </linearGradient>
         </defs>
         <path fill="url(#heartGrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -408,20 +408,20 @@
   // Timestamps (seconds) are estimated from the song's pacing —
   // edit the numbers below if you want a line to land more precisely.
   const lyrics = [
-    [0,  "And when I finally do (and when I finally do)"],
+    [2,  "And when I finally do (and when I finally do)"],
     [5,  "I know inside my heart (I know inside my heart)"],
-    [10, "That there could be no doubt, I knew it from the start"],
-    [16, "(you are the one) you are the one"],
-    [21, "That I've been searching for my whole life through,"],
-    [27, "(you are the one) you are the one that I've been looking for"],
-    [33, "And now that I have found you,"],
-    [38, "I'll never let you go, I'll hold you in my arms"],
-    [44, "You are the one"],
-    [56, "Another night spent alone"],
-    [62, "I'm lying in the dark (lying in the dark)"],
-    [68, "I don't know your name"],
-    [73, "But I know your voice sings to my heart (voice sings to my heart)"],
-    [79, "A sweet melody, a symphony of love"]
+    [9,  "That there could be no doubt, I knew it from the start"],
+    [15, "(you are the one) you are the one"],
+    [18, "That I've been searching for my whole life through,"],
+    [23, "(you are the one) you are the one that I've been looking for"],
+    [28, "And now that I have found you,"],
+    [31, "I'll never let you go, I'll hold you in my arms"],
+    [40, "You are the one"],
+    [58, "Another night spent alone"],
+    [64, "I'm lying in the dark (lying in the dark)"],
+    [70, "I don't know your name"],
+    [75, "But I know your voice sings to my heart (voice sings to my heart)"],
+    [81, "A sweet melody, a symphony of love"]
   ];
 
   // These lines are the chorus ("you are the one...") — volume rises here.
