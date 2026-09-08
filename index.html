@@ -417,6 +417,11 @@
     [28, "And now that I have found you,"],
     [31, "I'll never let you go, I'll hold you in my arms"],
     [40, "You are the one"],
+    [58, "Another night spent alone"],
+    [64, "I'm lying in the dark (lying in the dark)"],
+    [70, "I don't know your name"],
+    [75, "But I know your voice sings to my heart (voice sings to my heart)"],
+    [81, "A sweet melody, a symphony of love"]
   ];
 
   // These lines are the chorus ("you are the one...") — volume rises here.
@@ -465,8 +470,9 @@
       else if (i < idx) el.classList.add('passed');
     });
     if (idx >= 0) {
-      const lineHeight = lineEls[idx].offsetHeight;
-      track.style.transform = `translateY(calc(-${idx * lineHeight}px - ${lineHeight / 2}px))`;
+      const target = lineEls[idx];
+      const centerOffset = target.offsetTop + target.offsetHeight / 2;
+      track.style.transform = `translateY(-${centerOffset}px)`;
     }
     fadeVolumeTo(idx >= 0 && chorusIndices.has(idx) ? CHORUS_VOLUME : BASE_VOLUME);
   }
