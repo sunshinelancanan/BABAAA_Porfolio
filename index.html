@@ -323,8 +323,8 @@
 <div id="gate">
   <div class="gate-card" id="gateCard">
     <p class="gate-title">A little verification &#10084;</p>
-    <p class="gate-sub">before you come in... prove it's you.<br>Enter: PL + our date</p>
-    <input type="password" id="gateInput" class="gate-input" placeholder="enter the passcode" autocomplete="off">
+    <p class="gate-sub">our surname initials + our anniversary date</p>
+    <input type="password" id="gateInput" class="gate-input" placeholder="enter passcode" autocomplete="off">
     <button id="gateBtn" class="gate-btn">Unlock</button>
     <p class="gate-error" id="gateError">that's not quite it, try again</p>
   </div>
@@ -387,20 +387,20 @@
   // Timestamps (seconds) are estimated from the song's pacing —
   // edit the numbers below if you want a line to land more precisely.
   const lyrics = [
-    [2,  "And when I finally do (and when I finally do)"],
-    [7,  "I know inside my heart (I know inside my heart)"],
-    [12, "That there could be no doubt, I knew it from the start"],
-    [18, "(you are the one) you are the one"],
-    [22, "That I've been searching for my whole life through,"],
-    [29, "(you are the one) you are the one that I've been looking for"],
-    [35, "And now that I have found you,"],
-    [40, "I'll never let you go, I'll hold you in my arms"],
-    [46, "You are the one"],
-    [58, "Another night spent alone"],
-    [64, "I'm lying in the dark (lying in the dark)"],
-    [70, "I don't know your name"],
-    [75, "But I know your voice sings to my heart (voice sings to my heart)"],
-    [81, "A sweet melody, a symphony of love"]
+    [0,  "And when I finally do (and when I finally do)"],
+    [5,  "I know inside my heart (I know inside my heart)"],
+    [10, "That there could be no doubt, I knew it from the start"],
+    [16, "(you are the one) you are the one"],
+    [21, "That I've been searching for my whole life through,"],
+    [27, "(you are the one) you are the one that I've been looking for"],
+    [33, "And now that I have found you,"],
+    [38, "I'll never let you go, I'll hold you in my arms"],
+    [44, "You are the one"],
+    [56, "Another night spent alone"],
+    [62, "I'm lying in the dark (lying in the dark)"],
+    [68, "I don't know your name"],
+    [73, "But I know your voice sings to my heart (voice sings to my heart)"],
+    [79, "A sweet melody, a symphony of love"]
   ];
 
   // These lines are the chorus ("you are the one...") — volume rises here.
@@ -483,7 +483,7 @@
   });
 
   // Not shown to the person — checked against what they type.
-  const PASSCODE = 'PL091225';
+  const PASSCODE = 'pl091225';
 
   const gate = document.getElementById('gate');
   const gateCard = document.getElementById('gateCard');
